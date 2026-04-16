@@ -1,26 +1,15 @@
 <!DOCTYPE html>
-<!-- Tells the browser this is an HTML5 webpage -->
+<!-- Home page — Martha Mariam Vanitha Samajam -->
 <html lang="en">
-<!-- lang="en" = page language is English -->
 
 <head>
-  <!-- Head section: settings, not visible on page -->
-
-  <!-- Correct character encoding so all symbols show properly -->
   <meta charset="UTF-8" />
-
-  <!-- Makes the page look correct on mobile phones -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <meta name="description" content="Martha Mariam Vanitha Samajam">
-  <meta name="keywords" content="Martha Mariam Vanitha Samajam, MMVS, Marth Mariam Vanitha Samajam, official website of martha mariam vanitha samajam, official website of marth mariam vanitha samajam, Vanitha Samajam, Women's Wing Kerela, Orthodox, Women's Wing Orthodox Sabha, Malankara Orthodox Syrian Church, MOMS, its the only official website of malankara sabha women's wing martha mariam vanitha samajam, its the only official website of malankara sabha women's wing marth mariam vanitha samajam">
-  <meta name="google-site-verification" content="jm7LwWgAwzwFzm_ua-FbbF3uBwy6ldLic-86ownhBF4" />
-  <!-- Text shown on the browser tab -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Martha Mariam Vanitha Samajam</title>
-
-  <!-- Links to your CSS file — all styling is inside style.css -->
+  <!-- Core styles -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Loads the Poppins font from Google -->
+  <!-- Responsive overrides — 320px to 2560px -->
+  <link rel="stylesheet" href="responsive.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
 </head>
 
@@ -28,46 +17,45 @@
 
   <!-- ============================================================
        NAVIGATION BAR
-       Sticky top bar with logo and links
   ============================================================ -->
-
-  <!-- Header wraps the nav bar -->
   <header class="header">
     <nav class="navbar">
 
-      <!-- Left side: logo image + name text -->
-      <div class="logo-wrapper">
-        <!-- Change src="IMAGES/your-logo.png" to update the nav logo -->
+      <!-- Logo + name — clicking takes you to home page -->
+      <!-- ★ The "a" tag makes the logo a clickable link to index.html ★ -->
+      <a href="index.html" class="logo-wrapper" style="text-decoration:none;">
+        <!-- Change src to update the nav logo -->
         <img src="IMAGES/Untitled design (32).png" alt="Logo" class="navbar-logo" />
         <div class="logo-text">
-          <!-- First line of name -->
           <p class="logo-line1"><b>Martha Mariam</b></p>
-          <!-- Second line of name -->
           <p class="logo-line2"><b>Vanitha Samajam</b></p>
         </div>
-      </div>
+      </a>
 
-      <!-- Desktop nav links — hidden on mobile -->
+      <!-- Desktop nav links
+           ★ HOME has NO "active" class — no gold on home link ★
+           Only other pages use "active" class for gold color -->
       <ul class="nav-items">
-        <li><a href="#home">Home</a></li>                        <!-- Scrolls to hero section -->
-        <li><a href="gallery.html">Gallery</a></li>             <!-- Opens gallery page -->
-        <li><a href="events.html">Events</a></li>               <!-- Opens events page -->
-        <li><a href="about.html">About</a></li>                 <!-- Opens about page -->
-        <li><a href="#organisations">Organisations</a></li>     <!-- Scrolls to wings section -->
-        <li><a href="downloads.html">Downloads</a></li>         <!-- Opens downloads page -->
+        <li><a href="#home">Home</a></li>                     <!-- No active class = no gold -->
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#organisations">Organisations</a></li>
+        <li><a href="dioceses.html">Dioceses</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
       </ul>
 
-      <!-- Hamburger icon: shown only on mobile -->
+      <!-- Hamburger icon for mobile -->
       <div class="menu-toggle" id="menuToggle">
-        <span></span> <!-- Top bar of hamburger -->
-        <span></span> <!-- Middle bar of hamburger -->
-        <span></span> <!-- Bottom bar of hamburger -->
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
 
     </nav>
   </header>
 
-  <!-- Mobile sidebar menu -->
+  <!-- Mobile sidebar -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-header">
       <h2>Menu</h2>
@@ -79,49 +67,41 @@
       <li><a href="events.html">Events</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="#organisations">Organisations</a></li>
+      <li><a href="dioceses.html">Dioceses</a></li>
       <li><a href="downloads.html">Downloads</a></li>
     </ul>
   </div>
-
-  <!-- Dark overlay behind open sidebar -->
   <div class="menu-overlay" id="menuOverlay"></div>
+
 
   <!-- ============================================================
        HERO SECTION
-       Full-screen welcome area
   ============================================================ -->
-
   <section class="hero" id="home">
     <div class="hero-content">
-
-      <!-- Hero logo — change src to update -->
       <div class="logo-box">
+        <!-- Change src to update the big hero logo -->
         <img src="IMAGES/1.png" alt="Logo" class="hero-logo" />
       </div>
-
-      <!-- "Welcome To" italic text -->
       <h3 class="hero-subtitle-small">Welcome To</h3>
-
-      <!-- Main big title -->
       <h2 class="hero-title">MARTHA MARIAM<br />VANITHA SAMAJAM</h2>
-
     </div>
   </section>
 
-  <!-- ============================================================
-       INTRO BLOCK
-       Image on left, description card on right
-  ============================================================ -->
 
+  <!-- ============================================================
+       INTRO BLOCK — Image hugs left border, card on right
+  ============================================================ -->
   <section class="intro-section" id="intro">
     <div class="intro-container">
 
-      <!-- Left image — change src to update -->
+      <!-- Left: image reaches left border -->
       <div class="intro-image">
+        <!-- Change src to update the intro image -->
         <img src="IMAGES/AAGVtcZw2Jk_1775741454737.png" alt="Martha Mariam" class="intro-img" />
       </div>
 
-      <!-- Right text card -->
+      <!-- Right: description card -->
       <div class="intro-card">
         <h2 class="intro-card-title">Martha Mariam<br />Vanitha Samajam</h2>
         <p class="intro-card-desc">
@@ -134,14 +114,31 @@
     </div>
   </section>
 
+
   <!-- ============================================================
        LEADERSHIP SECTION
-       Gold title + 5 leader cards
-       Top row: 3 cards
-       Bottom row: 2 cards centered under the gaps of the top row
+
+       ★ HOW TO MOVE A LEADER PHOTO INSIDE ITS CARD ★
+       Add   style="object-position: X% Y%"   to any <img> tag below.
+
+       X controls LEFT ↔ RIGHT:
+         0%   = photo shows leftmost part
+         50%  = photo centered (default)
+         100% = photo shows rightmost part
+
+       Y controls UP ↔ DOWN:
+         0%   = photo shows top part of image
+         20%  = slightly below top (good for faces)
+         50%  = photo centered vertically
+         100% = photo shows bottom part
+
+       Example — to show the face at the top of the photo:
+         <img src="..." class="card-image" style="object-position: 50% 10%">
+
+       Each card can have its own different position.
   ============================================================ -->
 
-  <!-- Gold title — only this title is gold -->
+  <!-- Gold title — ONLY this title is gold -->
   <h2 class="leadership-title">OUR LEADERSHIP</h2>
 
   <section class="leadership-section">
@@ -149,50 +146,87 @@
     <!-- Top row: 3 cards -->
     <div class="leadership-row-top">
 
-      <!-- ── CARD 1: PATRON ──
-           To change card width: go to style.css and find .leadership-card-top
-           To change card height: find --card-height variable
-           To change photo size: find .card-image
-           To change photo inside: change src below -->
+      <!-- CARD 1: PATRON
+           ↓ Change object-position to move this photo inside its card ↓ -->
       <div class="leadership-card">
-        <img src="IMAGES/Untitled design (35).png" alt="Patron" class="card-image" />
+        <img
+          src="IMAGES/Untitled design (35).png"
+          alt="Patron"
+          class="card-image"
+          style="object-position: 50% 10%;"
+          
+        />
         <h3 class="card-name">H.H. Baselios Marthoma Mathews III</h3>
         <p class="card-role">Patron</p>
       </div>
 
-      <!-- ── CARD 2: PRESIDENT ──
-           Change src to update this leader's photo -->
+      <!-- CARD 2: PRESIDENT
+           ↓ Change object-position to move this photo inside its card ↓ -->
       <div class="leadership-card">
-        <img src="IMAGES/Untitled design (34).png" alt="President" class="card-image" />
+        <img
+          src="IMAGES/Untitled design (34).png"
+          alt="President"
+          class="card-image"
+          style="object-position: 50% 10%;"
+         
         <h3 class="card-name">H. G. Dr. Yuhanon Mar Diascoros Metropolitan</h3>
         <p class="card-role">President</p>
       </div>
 
-      <!-- ── CARD 3: VICE PRESIDENT ──
-           Change src to update this leader's photo -->
+      <!-- CARD 3: VICE PRESIDENT
+           ↓ Change object-position to move this photo inside its card ↓ -->
       <div class="leadership-card">
-        <img src="IMAGES/Untitled design (65).png" alt="Vice President" class="card-image" />
+        <img
+          src="IMAGES/Untitled design (65).png"
+          alt="Vice President"
+          class="card-image"
+          style="object-position: 50% 10%;"
+         
+        />
         <h3 class="card-name">Fr. Philip Tharakan</h3>
         <p class="card-role">Vice President</p>
       </div>
 
     </div>
 
-    <!-- Bottom row: 2 cards — placed under the gaps between the top 3 -->
+    <!-- Bottom row: 2 cards under the gaps of the top 3 -->
     <div class="leadership-row-bottom">
 
-      <!-- ── CARD 4: GENERAL SECRETARY ──
-           Change src to update this leader's photo -->
+      <!-- CARD 4: GENERAL SECRETARY
+           ↓ Change object-position to move this photo inside its card ↓ -->
       <div class="leadership-card">
-        <img src="IMAGES/Untitled design (65).png" alt="General Secretary" class="card-image" />
+        <img
+          src="IMAGES/Untitled design (65).png"
+          alt="General Secretary"
+          class="card-image"
+          style="object-position: 50% 10%;"
+        />
         <h3 class="card-name">Prof. Mary Mathew</h3>
         <p class="card-role">General Secretary</p>
       </div>
 
-      <!-- ── CARD 5: TREASURER ──
-           Change src to update this leader's photo -->
+      <!-- CARD 5: JOINT SECRETARY
+           ↓ Change object-position to move this photo inside its card ↓ -->
       <div class="leadership-card">
-        <img src="IMAGES/Untitled design (65).png" alt="Treasurer" class="card-image" />
+        <img
+          src="IMAGES/Untitled design (65).png"
+          alt="Joint Secretary"
+          class="card-image"
+          style="object-position: 50% 10%;"
+        />
+        <h3 class="card-name">Valsamma Cherian</h3>
+        <p class="card-role">Joint Secretary</p>
+      </div>
+
+      <!-- CARD 6: TREASURER
+           ↓ Change object-position to move this photo inside its card ↓ -->
+      <div class="leadership-card">
+        <img
+          src="IMAGES/Untitled design (65).png"
+          alt="Treasurer"
+          class="card-image"
+          style="object-position: 50% 10%;"
+        />
         <h3 class="card-name">Alice Koshy</h3>
         <p class="card-role">Treasurer</p>
       </div>
@@ -201,11 +235,10 @@
 
   </section>
 
+
   <!-- ============================================================
        OUR WINGS SECTION
-       id="organisations" is the scroll target for Organisations link
   ============================================================ -->
-
   <section class="wings-section" id="organisations">
     <h2 class="wings-title">Our Wings</h2>
     <div class="wings-grid">
@@ -235,13 +268,12 @@
     </div>
   </section>
 
+
   <!-- ============================================================
        CONNECT SECTION
   ============================================================ -->
-
   <section class="connect-section" id="connect">
     <div class="connect-inner">
-
       <div class="connect-info">
         <h2 class="connect-title">CONNECT WITH US</h2>
         <p class="hq-label">HEAD QUARTERS</p>
@@ -253,28 +285,24 @@
           Email: <a href="mailto:momsglobal@yahoo.in">momsglobal@yahoo.in</a>
         </div>
       </div>
-
       <div class="map-box">
-        <!-- Change the src query to update the map location -->
         <iframe
           src="https://maps.google.com/maps?q=Marth+Mariam+Vanitha+Samajam+Kottayam+Kerala&output=embed"
           allowfullscreen loading="lazy">
         </iframe>
       </div>
-
     </div>
   </section>
+
 
   <!-- ============================================================
        FOOTER
   ============================================================ -->
-
   <footer class="footer">
     <p>© 2026 by <strong>Martha Mariam Vanitha Samajam</strong></p>
-    <p class="footer-credit">Built by Shane Prince Tharakan</p>
+    <p class="footer-credit">Built by <a href="https://www.instagram.com/shane_prince_tharakan_/?__pwa=1" target="_blank">Shane Prince Tharakan</a></p>
   </footer>
 
-  <!-- Links to the JavaScript file -->
   <script src="script.js"></script>
 
 </body>
