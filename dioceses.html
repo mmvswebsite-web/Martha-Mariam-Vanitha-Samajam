@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<!-- Dioceses page — 30 diocese cards with office bearer names -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dioceses — Martha Mariam Vanitha Samajam</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── DIOCESES PAGE CUSTOM CSS ──
+       Only affects this page — does not change any other page */
+
+    .page-section {
+      background: linear-gradient(135deg, #13072e, #3f2182);
+      padding: 100px 40px 80px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Glow goes behind content on this page */
+    body::before {
+      z-index: -1;
+      top: 20%;         /* ↑ = glow moves DOWN | ↓ = moves UP on dioceses page */
+      opacity: 0.5;     /* ↑ = brighter | ↓ = fainter on dioceses page */
+    }
+
+    @media (max-width: 768px) {
+      .page-section { padding: 90px 16px 60px; }
+    }
+
+    @media (max-width: 480px) {
+      .page-section { padding: 86px 12px 44px; }
+    }
+
+    @media (max-width: 360px) {
+      .page-section { padding: 80px 10px 40px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV BAR -->
+  <header class="header">
+    <nav class="navbar">
+
+      <!-- Logo — clicking goes to Home -->
+      <a href="index.html" class="logo-wrapper" style="text-decoration:none;">
+        <img src="IMAGES/Untitled design (32).png" alt="Logo" class="navbar-logo" />
+        <div class="logo-text">
+          <p class="logo-line1"><b>Martha Mariam</b></p>
+          <p class="logo-line2"><b>Vanitha Samajam</b></p>
+        </div>
+      </a>
+
+      <!-- Desktop links — Dioceses is gold (active) -->
+      <ul class="nav-items">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="index.html#organisations">Organisations</a></li>
+        <li><a href="dioceses.html" class="active">Dioceses</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
+      </ul>
+
+      <div class="menu-toggle" id="menuToggle">
+        <span></span><span></span><span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile sidebar -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <h2>Menu</h2>
+      <button class="close-menu" id="closeMenu">&times;</button>
+    </div>
+    <ul class="mobile-nav-items">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#organisations">Organisations</a></li>
+      <li><a href="dioceses.html">Dioceses</a></li>
+      <li><a href="downloads.html">Downloads</a></li>
+    </ul>
+  </div>
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+
+  <!-- DIOCESES CONTENT -->
+  <section class="page-section">
+
+    <h2 class="page-title">DIOCESES</h2>
+    <div class="page-title-line"></div>
+
+    <!--
+    ============================================================
+    HOW TO ADD A NAME:
+    Find the diocese card below.
+    Replace the "—" with the real name.
+
+    BEFORE: <span class="diocese-name empty">—</span>
+    AFTER:  <span class="diocese-name">Sr. Mary Joseph</span>
+    (remove the word "empty" when you add a real name)
+
+    HOW TO CHANGE A DIOCESE NAME:
+    Find .diocese-heading text and change it.
+
+    HOW TO ADD A NEW DIOCESE (if needed):
+    Copy one entire diocese-card block and paste after the last one.
+    ============================================================
+    -->
+
+    <div class="dioceses-grid">
+
+      <!-- ── DIOCESE 1 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kottayam</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 2 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kollam</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 3 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Tiruvalla</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 4 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Ankamali</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 5 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Thrissur</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 6 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Madras</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 7 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Bombay</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 8 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Delhi</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 9 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Calcutta</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 10 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kunnamkulam</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 11 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Malabar</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 12 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Maramon</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 13 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Niranam</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 14 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Thumpamon</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 15 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Chengannur</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 16 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Idukki</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 17 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Pathanamthitta</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 18 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kariavattom</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 19 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Bangalore</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 20 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Coimbatore</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 21 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Adoor</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 22 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kochi</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 23 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of America</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 24 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of UK &amp; Europe</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 25 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Gulf</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 26 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kandanad East</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 27 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Kandanad West</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 28 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Malankara</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 29 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Konni</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DIOCESE 30 ── -->
+      <div class="diocese-card">
+        <div class="diocese-heading">Diocese of Haripad</div>
+        <div class="diocese-body">
+          <div class="diocese-row">
+            <span class="diocese-role">President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Vice President</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Jt. Secretary</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+          <div class="diocese-row">
+            <span class="diocese-role">Treasurer</span>
+            <span class="diocese-name empty">—</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 by <strong>Martha Mariam Vanitha Samajam</strong></p>
+    <p class="footer-credit">Built by Shane Prince Tharakan</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
