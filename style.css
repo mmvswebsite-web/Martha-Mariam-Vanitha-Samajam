@@ -43,6 +43,8 @@
 /* Smooth scrolling when clicking anchor links */
 html {
   scroll-behavior: smooth; /* Change to "auto" = instant jump, no smooth scroll */
+  overflow-x: hidden;      /* Prevents horizontal scroll on the entire page — fixes the side gap */
+  max-width: 100%;         /* Makes sure nothing stretches beyond the screen width */
 }
 
 /* Base font and background for the entire page */
@@ -58,7 +60,7 @@ body {
 body::before {
   content: '';            /* Required to show this element */
   position: absolute;     /* Positioned relative to the body */
-  top: 8.5%;               /* ↑ increase = glow moves DOWN | ↓ decrease = glow moves UP */
+  top: 19%;               /* ↑ increase = glow moves DOWN | ↓ decrease = glow moves UP */
   left: 50%;              /* keep at 50% to stay centered */
   transform: translate(-50%, -50%); /* Centers the glow — do not change */
   width: 600px;           /* ↑ increase = glow becomes WIDER */
@@ -110,11 +112,16 @@ body::before {
 }
 
 /* Nav logo image */
+/* ★ TO CHANGE LOGO SIZE WITHOUT CHANGING NAV HEIGHT:
+   ONLY change the transform: scale() value.
+   scale(1.0) = original size | scale(1.5) = 50% bigger | scale(0.8) = 20% smaller
+   Do NOT touch height — that makes the nav taller ★ */
 .navbar-logo {
-  height: 70px;         /* ↑ increase = logo becomes taller */
-  width: auto;          /* Keeps proportions */
-  object-fit: contain;  /* Shows full logo */
-  transform: scale(1.2); /* ↑ increase = logo appears bigger visually */
+  height: 50px;              /* Keeps nav height fixed — do NOT change this */
+  width: auto;               /* Keeps proportions — do not change */
+  object-fit: contain;       /* Shows full logo without cropping */
+  transform: scale(1.2);     /* ★ CHANGE ONLY THIS to resize logo visually ★ */
+  transform-origin: left center; /* Scales from left — do not change */
 }
 
 /* Text next to logo */
@@ -318,74 +325,300 @@ body::before {
 ================================================================ */
 
 /* Full-screen welcome section */
+/* ★ HERO IS SET TO ALWAYS FIT THE SCREEN ★
+   Everything inside hero (logo + text) will always be visible
+   without needing to scroll on any phone size */
 .hero {
   position: relative;
   z-index: 1;
-  min-height: 100vh;        /* ↑ increase e.g. 110vh = hero section taller */
+
+  min-height: 100svh;
+  /* svh = "small viewport height" — fits perfectly on all phones */
+  /* including phones where the browser address bar takes space */
+  /* If your browser doesn't support svh, it falls back to 100vh */
+
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 0px 0px; /* 100px top = space for nav | ↑ increase = content moves lower */
-  margin-bottom: 600px;
+  align-items: center;      /* Vertically centers everything */
+  justify-content: center;  /* Horizontally centers everything */
+
+  padding: 80px 20px 30px;
+  /* 80px top = space so nav doesn't cover the logo */
+  /* ↑ increase first value = logo moves lower */
+  /* ↓ decrease first value = logo moves higher */
+  /* 20px = left/right space | 30px = bottom space */
 }
 
-/* Inner content wrapper */
+/* Inner content wrapper — holds logo, subtitle, title */
 .hero-content {
   text-align: center;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: -10px;                /* ↑ increase = more space between logo, subtitle, title */
+  flex-direction: column;   /* Stacks logo, text vertically */
+  align-items: center;      /* Centers everything horizontally */
+  gap: 8px;
+  /* ↑ increase = more space between logo, "Welcome To", and title */
+  /* ↓ decrease = items sit closer together */
   max-width: 1000px;
   width: 100%;
-  margin-bottom: 600px; /* ↑ increase = more space below hero section | ↓ decrease = less space below hero */
-  margin-top: -40px; /* ↑ increase = moves entire hero content UP | ↓ decrease = moves hero content DOWN */
 }
 
 /* Box around hero logo */
 .logo-box {
-  padding: 0px;            /* ↑ increase = more space around hero logo */
-  margin-bottom: -50px;      /* ↑ increase = more space between logo and "Welcome To" */
+  padding: 10px;
+  /* ↑ increase = more space around the hero logo */
+  margin-bottom: 8px;
+  /* ↑ increase = more space between logo and "Welcome To" text */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* ── LOGO ENTRANCE ANIMATION ──
+     Logo fades in and slides up gently when page loads */
+  animation: heroLogoIn 1s ease both;
+  /* "1s" = how long the animation takes | ↑ increase = slower entrance */
+  /* Change "ease" to "linear" for constant speed, "ease-out" to slow at the end */
 }
 
 /* Hero logo image */
 .hero-logo {
-  height: 420px;            /* ↑ increase = hero logo becomes taller */
+  height: 220px;
+  /* ↑ increase = hero logo becomes taller on desktop */
+  /* ↓ decrease = hero logo becomes shorter on desktop */
   width: auto;
   object-fit: contain;
+
+  /* ── LOGO PULSE ANIMATION ──
+     Logo gently pulses with a subtle glow after it appears */
+  animation: heroLogoIn 1s ease both, logoPulse 3s ease-in-out 1s infinite;
+  /* "3s" = how long each pulse cycle takes | ↑ increase = slower pulse */
+  /* "1s" delay = waits 1 second after entrance before pulsing */
+  /* Change "infinite" to "3" to pulse only 3 times then stop */
 }
 
 /* "Welcome To" text */
 .hero-subtitle-small {
-  font-size: 22px;          /* ↑ increase = "Welcome To" text bigger */
+  font-size: 22px;
+  /* ↑ increase = "Welcome To" text bigger on desktop */
   font-weight: 600;
   color: #ffffff;
-  font-style: italic;       /* Remove this line to make it non-italic */
-  margin: 0;
+  font-style: italic;
+
+  /* ── SUBTITLE ENTRANCE ANIMATION ──
+     Fades in slightly after the logo */
+  animation: heroTextIn 1s ease 0.4s both;
+  /* "0.4s" = delay — appears 0.4 seconds after page loads */
+  /* ↑ increase delay = appears later | ↓ decrease = appears sooner */
 }
 
 /* Main big title */
 .hero-title {
-  font-size: clamp(32px, 5vw, 56px); /* 56px = max size | ↑ increase for bigger title */
+  font-size: clamp(28px, 5vw, 56px);
+  /* clamp(min, scale, max) */
+  /* 28px = minimum size on tiny phones — never smaller than this */
+  /* 5vw = scales with screen width */
+  /* 56px = maximum size on large screens */
   font-weight: 800;
   color: #ffffff;
-  line-height: 1.3;         /* ↑ increase = more space between title lines */
+  line-height: 1.3;
   margin: 0;
+
+  /* ── TITLE ENTRANCE ANIMATION ──
+     Fades in last, after subtitle */
+  animation: heroTextIn 1s ease 0.7s both;
+  /* "0.7s" = delay — appears 0.7 seconds after page loads */
+  /* ↑ increase delay = appears later | ↓ decrease = appears sooner */
 }
 
 
 /* ================================================================
-   INTRO BLOCK — Image Left, Card Right
+   HERO ANIMATIONS
+   These @keyframes define the actual animation movements
 ================================================================ */
 
-/* Intro section */
+/* Logo slides up and fades in from below */
+@keyframes heroLogoIn {
+  from {
+    opacity: 0;
+    /* Starts completely invisible */
+    transform: translateY(30px);
+    /* Starts 30px BELOW its final position */
+    /* ↑ increase 30px = starts further below (more dramatic entrance) */
+    /* ↓ decrease 30px = starts closer to final position (subtle entrance) */
+  }
+  to {
+    opacity: 1;
+    /* Ends fully visible */
+    transform: translateY(0);
+    /* Ends at its normal position */
+  }
+}
+
+/* Text fades in and slides up from below */
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    /* Starts invisible */
+    transform: translateY(20px);
+    /* Starts 20px below final position */
+    /* ↑ increase 20px = more dramatic text entrance */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo gently pulses with a soft glow */
+@keyframes logoPulse {
+  0%   { filter: drop-shadow(0 0 0px rgba(121, 0, 226, 0)); }
+  /* Start = no glow */
+  50%  { filter: drop-shadow(0 0 18px rgba(121, 0, 226, 0.7)); }
+  /* Middle = soft purple glow around logo */
+  /* ↑ increase 18px = bigger glow radius */
+  /* ↑ increase 0.7 = brighter glow */
+  /* Change 121,0,226 = change glow color (currently purple) */
+  100% { filter: drop-shadow(0 0 0px rgba(121, 0, 226, 0)); }
+  /* End = back to no glow */
+}
+
+/* Glow (the circular background gradient) pulses in and out */
+@keyframes glowPulse {
+  0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  /* Start = slightly faded, normal size */
+  50%  { opacity: 1;   transform: translate(-50%, -50%) scale(1.1); }
+  /* Middle = fully visible, 10% bigger */
+  /* ↑ increase 1.1 = glow grows MORE during pulse */
+  /* ↓ decrease 1.1 = glow grows LESS during pulse */
+  100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  /* End = back to start */
+}
+
+/* Glow (body::before) uses the pulse animation */
+body::before {
+  animation: glowPulse 4s ease-in-out infinite;
+  /* "4s" = how long each glow pulse cycle takes */
+  /* ↑ increase = slower, more subtle pulse */
+  /* ↓ decrease = faster, more intense pulse */
+  /* Change "infinite" to a number e.g. "3" to pulse only 3 times */
+}
+
+
+/* ================================================================
+   SECTION GAP CONTROLS
+   ★ Change the space BETWEEN sections here ★
+   Each variable controls the gap between two specific sections.
+   Find the gap you want to change and update the value.
+================================================================ */
+
+/* ── GAP BETWEEN HERO AND INTRO SECTION ──
+   This is the space between the big welcome screen and the image+text block */
 .intro-section {
   position: relative;
   z-index: 1;
-  padding: 60px 40px;       /* 60px = top/bottom space | 40px = left/right */
+
+  margin-top: 0px;
+  /* ↑ increase e.g. 60px = adds space ABOVE the intro section */
+  /* (This creates a gap between hero and intro) */
+  /* ↓ decrease = no gap between hero and intro */
+  /* Change to negative e.g. -20px = intro overlaps hero slightly */
+
+  padding: 60px 40px;
+  /* First value (60px) = space INSIDE the top of the intro section */
+  /* Second value (40px) = left/right space */
+}
+
+/* ── GAP BETWEEN INTRO AND LEADERSHIP SECTION ── */
+.leadership-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+
+  margin-top: 60px;
+  /* ↑ increase = MORE space between intro section and leadership title */
+  /* ↓ decrease = LESS space between intro and leadership */
+  /* Change to 0px = no gap */
+
+  margin-bottom: 60px;
+  /* ↑ increase = more space below the title before the cards start */
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* ── GAP BETWEEN LEADERSHIP AND WINGS SECTION ── */
+.wings-section {
+  position: relative;
+  z-index: 1;
+
+  margin-top: 0px;
+  /* ↑ increase = more space between leadership cards and wings section */
+  /* ↓ decrease = less space */
+
+  padding: 100px 60px;
+  /* First value (100px) = space inside the top of wings section */
+  /* ↑ increase = wings content moves lower inside the section */
+  background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
+}
+
+/* ── GAP BETWEEN WINGS AND CONNECT SECTION ── */
+.connect-section {
+  position: relative;
+  z-index: 1;
+
+  margin-top: 0px;
+  /* ↑ increase = more space between wings and connect section */
+
+  padding: 80px 40px;
+  background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
+}
+
+/* Wings title */
+.wings-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  margin-bottom: 60px;
+  letter-spacing: 2px;
+}
+
+/* 3-column wing cards grid */
+.wings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Each wing card */
+.wing-card {
+  background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
+  border: 1px solid rgba(121, 0, 226, 0.35);
+  border-radius: 24px;
+  padding: 48px 36px;
+  transition: transform 0.3s, border-color 0.3s;
+  min-height: 220px;
+}
+
+.wing-card:hover {
+  transform: translateY(-8px);
+  border-color: #e6c068;
+}
+
+.wing-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.wing-card-desc {
+  font-size: 16px;
+  color: #c8b8e8;
+  line-height: 1.9;
 }
 
 /* Two-column layout */
@@ -409,10 +642,9 @@ body::before {
 /* Left image */
 .intro-img {
   width: 100%;
-  max-height: 800px;        /* ↑ increase = allows taller images */
+  max-height: 600px;        /* ↑ increase = allows taller images */
   object-fit: contain;
-  border-radius: 0px;      /* ↑ increase = more rounded image corners */
-  margin-right: 100px;       /* ↑ increase = more space between image and card */
+  border-radius: 20px;      /* ↑ increase = more rounded image corners */
 }
 
 /* Right text card */
@@ -420,10 +652,9 @@ body::before {
   flex: 1;
   background: linear-gradient(135deg, var(--bg-color) 0%, var(--gradient-end) 100%);
   /* Change --gradient-end in :root to change card background color */
-  padding: 20px 50px 40px;       /* 50px = top/bottom inside | 40px = left/right inside */
+  padding: 50px 40px;       /* 50px = top/bottom inside | 40px = left/right inside */
   border-radius: 25px;      /* ↑ increase = more rounded card corners */
   border: 1px solid rgba(121, 0, 226, 0.3);
-  margin-bottom: 150px;
 }
 
 /* Card heading */
@@ -437,7 +668,7 @@ body::before {
 
 /* Card paragraph */
 .intro-card-desc {
-  font-size: 24px;          /* ↑ increase = paragraph text bigger */
+  font-size: 16px;          /* ↑ increase = paragraph text bigger */
   font-weight: 400;
   color: #e8dff8;           /* change hex = paragraph text color */
   line-height: 1.85;        /* ↑ increase = more space between lines */
@@ -590,67 +821,6 @@ body::before {
 
 
 /* ================================================================
-   OUR WINGS SECTION
-================================================================ */
-
-/* Wings section */
-.wings-section {
-  position: relative;
-  z-index: 1;
-  padding: 80px 40px;       /* 80px = top/bottom space | 40px = left/right */
-  background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
-}
-
-/* Wings title */
-.wings-title {
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 700;
-  color: #ffffff;           /* change hex = wings title color */
-  text-align: center;
-  margin-bottom: 50px;      /* ↑ increase = more space below title */
-}
-
-/* 3-column wing cards grid */
-.wings-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 = number of columns */
-  gap: 24px;                /* ↑ increase = more space between wing cards */
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* Each wing card */
-.wing-card {
-  background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
-  border: 1px solid rgba(121, 0, 226, 0.35);
-  border-radius: 20px;      /* ↑ increase = more rounded corners */
-  padding: 32px 24px;       /* 32px = top/bottom inside | 24px = left/right inside */
-  transition: transform 0.3s, border-color 0.3s;
-}
-
-/* Wing card hover */
-.wing-card:hover {
-  transform: translateY(-6px); /* ↑ increase = card lifts higher on hover */
-  border-color: #e6c068;
-}
-
-/* Wing card title */
-.wing-card-title {
-  font-size: 15px;    /* ↑ increase = wing title bigger */
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-/* Wing card description */
-.wing-card-desc {
-  font-size: 14px;    /* ↑ increase = description text bigger */
-  color: #c8b8e8;
-  line-height: 1.8;   /* ↑ increase = more space between lines */
-}
-
-
-/* ================================================================
    CONNECT SECTION
 ================================================================ */
 
@@ -746,105 +916,63 @@ body::before {
   font-size: 13px;
 }
 
-
-/* ================================================================
-   SHARED NAV STYLES FOR ALL PAGES (gallery, events, about, downloads)
-================================================================ */
-
-/* Active nav link — highlighted gold on current page */
-.nav-items a.active {
-  color: var(--gold);
+.footer-credit a {
+  color: #e6c068;
+  text-decoration: none;
 }
 
-/* ── SHARED PAGE SECTION ── */
-/* Used by gallery, events, about, downloads pages */
+.footer-credit a:hover {
+  text-decoration: none;
+}
+
+
+/* ================================================================
+   SHARED PAGE STYLES
+   Used by Gallery, Events, About, Downloads, Dioceses
+================================================================ */
 .page-section {
-  padding: 100px 40px 80px; /* 100px top = space for sticky nav */
+  padding: 100px 40px 80px;
   background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
   min-height: 100vh;
 }
 
-/* White page title used on all sub-pages */
-.page-title {
-  font-size: clamp(24px, 4vw, 44px);
-  font-weight: 800;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 12px;
-}
+.page-title { font-size: clamp(24px, 4vw, 44px); font-weight: 800; color: #ffffff; text-align: center; margin-bottom: 12px; }
+.page-title-line { width: 60px; height: 3px; background: #ffffff; margin: 0 auto 50px; }
 
-/* White underline below page titles */
-.page-title-line {
-  width: 60px;
-  height: 3px;
-  background: #ffffff;
-  margin: 0 auto 50px;
-}
 
-/* ── GALLERY PAGE ── */
+/* ================================================================
+   GALLERY PAGE
+================================================================ */
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
 
-/* 4-column image grid */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 = columns | ↑ increase for more columns */
-  gap: 16px;                             /* ↑ increase = more space between photos */
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* Each gallery photo box */
-/* To add a real photo: replace emoji div with <img src="photo.jpg"> */
 .gallery-item {
-  aspect-ratio: 1;           /* Perfect square | change to 4/3 for landscape */
-  border-radius: 14px;       /* ↑ increase = more rounded photo corners */
+  aspect-ratio: 1;
+  border-radius: 14px;
   background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
-  border: 1px solid rgba(121, 0, 226, 0.3);
+  border: 1px solid rgba(121,0,226,0.3);
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 44px;           /* Emoji size — remove when using real photos */
+  font-size: 44px;
 }
 
-/* Photo grows slightly on hover */
-.gallery-item:hover {
-  transform: scale(1.04);    /* ↑ increase = grows more on hover */
-}
+.gallery-item:hover { transform: scale(1.04); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-note { text-align: center; margin-top: 24px; font-size: 14px; color: #b0a0d0; font-style: italic; }
 
-/* Real photo inside gallery box */
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
-/* Note below gallery */
-.gallery-note {
-  text-align: center;
-  margin-top: 24px;
-  font-size: 14px;
-  color: #b0a0d0;
-  font-style: italic;
-}
+/* ================================================================
+   EVENTS PAGE
+================================================================ */
+.events-list { max-width: 750px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
 
-/* ── EVENTS PAGE ── */
-
-/* Vertical list of event cards */
-.events-list {
-  max-width: 750px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;                 /* ↑ increase = more space between event cards */
-}
-
-/* Each event row */
 .event-card {
   background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
-  border: 1px solid rgba(121, 0, 226, 0.3);
-  border-radius: 14px;       /* ↑ increase = more rounded event cards */
+  border: 1px solid rgba(121,0,226,0.3);
+  border-radius: 14px;
   padding: 22px 28px;
   display: flex;
   align-items: center;
@@ -853,135 +981,45 @@ body::before {
   transition: border-color 0.3s;
 }
 
-.event-card:hover {
-  border-color: #e6c068;
-}
+.event-card:hover { border-color: #e6c068; }
+.event-date { min-width: 65px; text-align: center; }
+.event-day { font-size: 32px; font-weight: 900; color: #e6c068; line-height: 1; }
+.event-month { font-size: 13px; color: #b0a0d0; text-transform: uppercase; letter-spacing: 0.08em; }
+.event-info h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+.event-info p { font-size: 14px; color: #b0a0d0; }
 
-/* Date block */
-.event-date {
-  min-width: 65px;
-  text-align: center;
-}
 
-/* Big day number */
-.event-day {
-  font-size: 32px;           /* ↑ increase = bigger day number */
-  font-weight: 900;
-  color: #e6c068;
-  line-height: 1;
-}
+/* ================================================================
+   ABOUT PAGE
+================================================================ */
+.about-content { max-width: 900px; margin: 0 auto; }
+.about-content h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: #ffffff; margin-bottom: 40px; }
 
-/* Month text */
-.event-month {
-  font-size: 13px;
-  color: #b0a0d0;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-/* Event name */
-.event-info h3 {
-  font-size: 16px;           /* ↑ increase = event name bigger */
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-/* Event location */
-.event-info p {
-  font-size: 14px;
-  color: #b0a0d0;
-}
-
-/* ── ABOUT PAGE ── */
-
-/* About content max width */
-.about-content {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Big "ABOUT" heading */
-.about-content h2 {
-  font-size: clamp(28px, 4vw, 44px);
-  font-weight: 900;
-  color: #ffffff;
-  margin-bottom: 40px;
-}
-
-/* Each about sub-section block */
 .about-block {
   background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
-  border-radius: 16px;       /* ↑ increase = more rounded about blocks */
-  padding: 36px 40px;        /* ↑ increase = more space inside blocks */
-  margin-bottom: 28px;       /* ↑ increase = more space between blocks */
-  border: 1px solid rgba(121, 0, 226, 0.2);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(121,0,226,0.2);
 }
 
-/* Sub-heading inside about block */
-.about-block h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: #e6c068;            /* Gold sub-headings in About */
-  margin-bottom: 16px;
-}
+.about-block h3 { font-size: 18px; font-weight: 700; color: #e6c068; margin-bottom: 16px; }
+.about-block p { font-size: 15px; color: #c8b8e8; line-height: 1.9; margin-bottom: 12px; }
+.about-block p:last-child { margin-bottom: 0; }
+.motto-text { font-size: 18px; font-weight: 700; font-style: italic; color: #ffffff; text-align: center; }
+.about-block ol { padding-left: 20px; color: #c8b8e8; font-size: 15px; line-height: 2; }
+.about-block ul { list-style: none; color: #c8b8e8; font-size: 15px; line-height: 2.2; }
+.about-block ul li strong { color: #e8dff8; }
 
-/* Paragraph inside about block */
-.about-block p {
-  font-size: 15px;
-  color: #c8b8e8;
-  line-height: 1.9;
-  margin-bottom: 12px;
-}
 
-.about-block p:last-child {
-  margin-bottom: 0;
-}
+/* ================================================================
+   DOWNLOADS PAGE
+================================================================ */
+.downloads-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
 
-/* Motto text: centered white italic */
-.motto-text {
-  font-size: 18px;
-  font-weight: 700;
-  font-style: italic;
-  color: #ffffff;
-  text-align: center;
-}
-
-/* Numbered list inside about */
-.about-block ol {
-  padding-left: 20px;
-  color: #c8b8e8;
-  font-size: 15px;
-  line-height: 2;
-}
-
-/* Office bearers list */
-.about-block ul {
-  list-style: none;
-  color: #c8b8e8;
-  font-size: 15px;
-  line-height: 2.2;
-}
-
-.about-block ul li strong {
-  color: #e8dff8;
-}
-
-/* ── DOWNLOADS PAGE ── */
-
-/* Downloads list */
-.downloads-list {
-  max-width: 700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;                 /* ↑ increase = more space between download rows */
-}
-
-/* Each download row */
 .dl-item {
   background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
-  border: 1px solid rgba(121, 0, 226, 0.3);
+  border: 1px solid rgba(121,0,226,0.3);
   border-radius: 14px;
   padding: 20px 26px;
   display: flex;
@@ -990,25 +1028,10 @@ body::before {
   transition: border-color 0.3s;
 }
 
-.dl-item:hover {
-  border-color: #e6c068;
-}
+.dl-item:hover { border-color: #e6c068; }
+.dl-name { font-size: 15px; font-weight: 600; color: #ffffff; }
+.dl-size { font-size: 13px; color: #b0a0d0; margin-top: 4px; }
 
-/* File name */
-.dl-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-}
-
-/* File size */
-.dl-size {
-  font-size: 13px;
-  color: #b0a0d0;
-  margin-top: 4px;
-}
-
-/* Download button */
 .dl-btn {
   background: linear-gradient(135deg, #e6c068, #f0d080);
   color: var(--bg-color);
@@ -1022,91 +1045,759 @@ body::before {
   transition: opacity 0.2s;
 }
 
-.dl-btn:hover {
-  opacity: 0.8;
+.dl-btn:hover { opacity: 0.8; }
+
+
+/* ================================================================
+   DIOCESES PAGE
+   30 cards with diocese heading + 5 office bearer rows
+   Each card has its own bordered box — styled like event cards
+================================================================ */
+
+/* Grid of all 30 diocese cards */
+.dioceses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 3 columns on desktop */
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Each diocese card — bordered box like event cards */
+.diocese-card {
+  background: linear-gradient(135deg, var(--bg-color), var(--gradient-end));
+  border: 1px solid rgba(121, 0, 226, 0.4);  /* Purple border around each card */
+  border-radius: 16px;                        /* Rounded corners */
+  padding: 0;                                 /* No padding — sections have their own */
+  overflow: hidden;                           /* Keeps header corners rounded */
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Card lifts on hover */
+.diocese-card:hover {
+  transform: translateY(-5px);
+  border-color: #e6c068;                      /* Border turns gold on hover */
+  box-shadow: 0 12px 40px rgba(121,0,226,0.3);
+}
+
+/* Diocese name heading — colored top bar */
+.diocese-heading {
+  background: rgba(121, 0, 226, 0.25);        /* Purple tinted header background */
+  border-bottom: 1px solid rgba(121, 0, 226, 0.4); /* Divider below heading */
+  padding: 14px 20px;                         /* Space inside the heading bar */
+  font-size: 15px;                            /* ↑ increase = diocese name bigger */
+  font-weight: 700;
+  color: #e6c068;                             /* Gold — change hex to change color */
+  line-height: 1.3;
+}
+
+/* Content area holding all 5 office bearer rows */
+.diocese-body {
+  padding: 16px 20px;                         /* Space around the rows inside the card */
+}
+
+/* Each office bearer row */
+.diocese-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;                             /* ↑ increase = more space between rows */
+  border-bottom: 1px solid rgba(255,255,255,0.06); /* Faint divider between rows */
+}
+
+/* Last row has no bottom border */
+.diocese-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Role label e.g. "President" */
+.diocese-role {
+  font-size: 11px;                            /* ↑ increase = role label bigger */
+  font-weight: 700;
+  color: #9080b0;                             /* Muted purple — change hex to change */
+  min-width: 100px;                           /* ↑ increase = wider role column */
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-top: 2px;
+}
+
+/* Person's name */
+.diocese-name {
+  font-size: 13px;                            /* ↑ increase = name text bigger */
+  font-weight: 500;
+  color: #e8dff8;                             /* Light purple — change hex to change */
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* Placeholder shown when name is not added yet */
+.diocese-name.empty {
+  color: rgba(255,255,255,0.2);
+  font-style: italic;
+}
+
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+   RESPONSIVE SECTIONS
+   ┌──────────────────────────────────────────────────┐
+   │ DESKTOP     = above 1024px                       │
+   │ TABLET      = 769px to 1024px                    │
+   │ MOBILE      = 481px to 768px                     │
+   │ SMALL PHONE = 361px to 480px                     │
+   │ TINY PHONE  = up to 360px (includes 320px)       │
+   └──────────────────────────────────────────────────┘
+   Changes ABOVE all @media = affects ALL screens
+   Changes INSIDE a @media = affects ONLY that screen size
+   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+
+
+/* ================================================================
+   DESKTOP — above 1024px
+   Edit styles ABOVE this section for desktop (they are the defaults)
+   Specific desktop overrides below:
+================================================================ */
+
+/* ── DESKTOP: GLOW POSITION ── */
+body::before {
+  top: 12%;           /* ↑ = glow moves DOWN on desktop | ↓ = moves UP */
+  left: 50%;          /* Keep 50% = centered | ↑ = moves RIGHT | ↓ = moves LEFT */
+  width: 600px;       /* ↑ = glow WIDER on desktop */
+  height: 600px;      /* ↑ = glow TALLER on desktop */
+  opacity: 1;         /* ↑ = brighter | ↓ = fainter on desktop */
+  filter: blur(60px); /* ↑ = softer glow on desktop */
+}
+
+/* ── DESKTOP: HERO ── */
+.hero-logo {
+  height: 220px;      /* ↑ = hero logo taller on desktop */
+}
+
+.hero-subtitle-small {
+  font-size: 22px;    /* ↑ = "Welcome To" bigger on desktop */
+}
+
+.hero-title {
+  font-size: clamp(32px, 5vw, 56px); /* max 56px on desktop */
+}
+
+/* ── DESKTOP: INTRO IMAGE ── */
+.intro-image {
+  flex: 0 0 45%;      /* 45% = image column width on desktop */
+}
+
+.intro-img {
+  min-height: 660px;  /* ↑ = image taller on desktop */
+  /* To move photo focus: change object-position below */
+  object-position: center top; /* left/center/right  top/center/bottom */
+  margin-left: -190px;
+}
+
+/* ── DESKTOP: LEADERSHIP ── */
+.leadership-section {
+  padding: 20px 20px 80px;
+}
+
+/* ── DESKTOP: WINGS ── */
+.wings-section {
+  padding: 100px 60px;    /* top/bottom | left/right on desktop */
+}
+
+/* ── DESKTOP: CONNECT ── */
+.connect-inner {
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* ── DESKTOP: DIOCESES ── */
+.dioceses-grid {
+  grid-template-columns: repeat(3, 1fr); /* 3 columns on desktop */
 }
 
 
 /* ================================================================
-   RESPONSIVE — TABLET (max 1024px)
+   TABLET — 769px to 1024px
 ================================================================ */
 
 @media (max-width: 1024px) {
 
-  /* Cards slightly narrower on tablet */
-  .leadership-card {
-    width: 220px; /* ↑ increase = wider cards on tablets */
+  /* ── TABLET: GLOW ── */
+  body::before {
+    top: 10%;           /* ↑ = glow moves DOWN on tablet */
+    left: 50%;          /* Keep centered */
+    width: 400px;       /* ↑ = glow WIDER on tablet */
+    height: 400px;      /* ↑ = glow TALLER on tablet */
+    opacity: 0.9;       /* ↑ = brighter | ↓ = fainter on tablet */
+    filter: blur(50px); /* ↑ = softer glow on tablet */
   }
 
-  /* Fix bottom row offset for smaller card width */
+  /* ── TABLET: NAV LOGO ── */
+  .navbar-logo {
+    transform: scale(1.5); /* ↑ = bigger logo on tablet */
+  } 
+
+  .nav-items {
+    gap: 24px;          /* ↑ increase = more space between nav links on tablet */
+    display: none;
+  } 
+  .menu-toggle {
+    display: flex;
+  }
+  .nav
+
+  /* ── TABLET: HERO ── */
+  .hero-logo {
+    height: 300px;      /* ↑ = hero logo taller on tablet */
+    margin-top: -200px; /* Move logo up on tablet to align better with text */
+  }
+
+  .hero-subtitle-small {
+    font-size: 24px;    /* ↑ = "Welcome To" bigger on tablet */
+    margin-top: -90px; /* Move "Welcome To" up on tablet to align better with logo and title */
+    margin-bottom: 20px; /* ↑ increase = more space between "Welcome To" and title on tablet */ 
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 5vw, 48px); /* max 48px on tablet */
+    margin-top: -10px; /* Move title up on tablet to align better with logo and subtitle */
+  }
+
+  /* ── TABLET: INTRO ── */
+  .intro-image {
+    flex: 0 0 45%;      /* image column width on tablet */
+  }
+
+  .intro-img {
+    min-height: 420px;  /* ↑ = image taller on tablet */
+    object-position: center top; /* move photo focus on tablet */
+  }
+
+  .intro-card {
+    padding: 40px 40px 40px 40px; /* top right bottom left inside card on tablet */
+  }
+
+  /* ── TABLET: LEADERSHIP CARDS ── */
+  .leadership-card {
+    width: 220px;       /* ↑ = wider leader cards on tablet */
+  }
+
   .leadership-row-bottom {
     padding: 0 calc((220px + var(--card-gap)) / 2);
   }
 
+  /* ── TABLET: CARD PHOTO ── */
+  .card-image {
+    height: 250px;      /* ↑ = leader photos taller on tablet */
+    object-position: 50% 20%; /* X% Y% — move photo inside card on tablet */
+    /* X: 0%=left 50%=center 100%=right */
+    /* Y: 0%=top  50%=center 100%=bottom */
+  }
+
+  /* ── TABLET: GALLERY ── */
   .gallery-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablets */
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on tablet */
+  }
+
+  /* ── TABLET: WINGS ── */
+  .wings-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+  }
+
+  .wings-section {
+    padding: 80px 30px; /* top/bottom | left/right on tablet */
+  }
+
+  /* ── TABLET: DIOCESES ── */
+  .dioceses-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    gap: 20px;
   }
 }
 
 
 /* ================================================================
-   RESPONSIVE — MOBILE (max 768px)
+   MOBILE — 481px to 768px
 ================================================================ */
 
 @media (max-width: 768px) {
 
-  /* Hide desktop links, show hamburger */
-  .nav-items { display: none; }
-  .menu-toggle { display: flex; }
-  .header { padding: 8px 16px; }
+  /* ── MOBILE: GLOW ── */
+  body::before {
+    top: 5%;            /* ↑ = glow moves DOWN on mobile */
+    left: 50%;          /* Keep centered | ↑ = right | ↓ = left */
+    width: 300px;       /* ↑ = glow WIDER on mobile */
+    height: 300px;      /* ↑ = glow TALLER on mobile */
+    opacity: 0.8;       /* ↑ = brighter | ↓ = fainter on mobile */
+    filter: blur(40px); /* ↑ = softer glow on mobile */
+  } 
 
-  /* Hero adjustments */
-  .hero-title { font-size: 30px; }
-  .hero-logo { height: 160px; }
+  /* ── MOBILE: NAV ── */
+  .nav-items { display: none; }   /* Hides desktop links on mobile */
+  .menu-toggle { display: flex; } /* Shows hamburger on mobile */
 
-  /* Intro stacks vertically */
-  .intro-container { flex-direction: column; gap: 30px; }
-  .intro-image { flex: none; width: 100%; }
-  .intro-section { padding: 60px 20px; }
+  .header {
+    padding: 8px 16px;  /* top/bottom | left/right nav on mobile */
+  }
 
-  /* Leadership stacks to 1 column */
-  .leadership-title { font-size: 30px; margin: 50px 15px 40px; }
+  /* ── MOBILE: NAV LOGO ── */
+  .navbar-logo {
+    transform: scale(1.4); /* ↑ = bigger logo on mobile */
+  }
+
+  /* ── MOBILE: HERO ── */
+  .hero {
+    padding: 70px 16px 20px; /* top | sides | bottom on mobile */
+    min-height: 100svh;
+  }
+
+  .hero-logo {
+    height: 200px;      /* ↑ = bigger logo on mobile */
+    margin-top: -320px; /* Move logo up on mobile to align better with text */
+  }
+
+  .hero-title {
+    font-size: 29px;    /* ↑ = bigger title on mobile */
+    top: 10px;             /* Move title up on mobile to align better with logo and subtitle */
+  }
+
+  .hero-subtitle-small {
+    font-size: 20px;    /* ↑ = "Welcome To" bigger on mobile */
+    top: 100px;             /* Move "Welcome To" up on mobile to align better with logo and title */
+  }
+
+  .hero-content {
+    gap: 6px;           /* ↑ = more space between hero elements on mobile */
+  }
+
+  /* ── MOBILE: INTRO ── */
+  /* Stacks image on top, card below on mobile */
+  .intro-container {
+    flex-direction: column;
+    gap: 0px; /* ↑ increase = more space between image and card when stacked on mobile */
+    margin: -200px 0 0; /* Move intro section up on mobile to align better with hero section */
+  }
+
+  .intro-image {
+    flex: none;
+    width: 100%;        /* Full width on mobile */
+  }
+
+  .intro-img {
+    min-height: 260px;  /* ↑ = taller image on mobile */
+    max-height: 300px;  /* ↓ = shorter image on mobile */
+    border-radius: 0;
+    object-position: 50px 20%; /* move photo focus on mobile — adjust X and Y to show best part of image when cropped on mobile */
+    /* center = left-right | 20% = slightly from top */
+  }
+
+  .intro-card {
+    padding: 52px 5px; /* top/bottom | left/right inside card on mobile */
+    border-radius: 35px; /* ↑ increase = more rounded card corners on mobile */
+  }
+
+  .intro-card-title {
+    font-size: 22px;    /* ↑ = card heading bigger on mobile */
+  }
+
+  .intro-card-desc {
+    font-size: 15px;    /* ↑ = card paragraph bigger on mobile */
+  }
+
+  .intro-section {
+    padding: 0;
+    margin-top: 0;
+  }
+
+  /* ── MOBILE: LEADERSHIP ── */
+  .leadership-title {
+    font-size: 28px;    /* ↑ = gold title bigger on mobile */
+    margin: 40px 16px 35px;
+  }
 
   .leadership-row-top,
   .leadership-row-bottom {
-    flex-direction: column; /* Stack all cards vertically on mobile */
+    flex-direction: column;
     align-items: center;
     padding: 0;
+    gap: 20px;          /* ↑ = more space between stacked cards on mobile */
   }
 
   .leadership-card {
-    width: 90%;             /* Cards take 90% of screen width on mobile */
-    max-width: 320px;
-    min-height: auto;       /* Cards adjust height to content on mobile */
+    width: 85%;         /* ↑ = cards wider on mobile */
+    max-width: 340px;
+    min-height: auto;
   }
 
-  /* Wings, connect reduce to 1 column */
-  .wings-grid { grid-template-columns: 1fr; }
-  .connect-inner { grid-template-columns: 1fr; gap: 32px; }
-  .wings-section, .connect-section { padding: 60px 20px; }
+  /* ── MOBILE: CARD PHOTO ── */
+  .card-image {
+    height: 220px;      /* ↑ = leader photos taller on mobile */
+    object-position: 50% 20%; /* move photo inside card on mobile */
+    /* X: 0%=left 50%=center 100%=right */
+    /* Y: 0%=top  50%=center 100%=bottom */
+  }
 
-  /* Gallery 2 columns on mobile */
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .card-name { font-size: 14px; }
+  .leadership-section { padding: 10px 16px 60px; }
 
-  /* Page sections on mobile */
-  .page-section { padding: 100px 20px 60px; }
-  .about-block { padding: 24px 20px; }
+  /* ── MOBILE: WINGS ── */
+  .wings-section {
+    padding: 60px 16px; /* top/bottom | sides on mobile */
+  }
+
+  .wings-title {
+    font-size: 26px;    /* ↑ = wings title bigger on mobile */
+    margin-bottom: 36px;
+  }
+
+  .wings-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 18px;
+  }
+
+  .wing-card {
+    padding: 32px 24px; /* top/bottom | sides inside wing card on mobile */
+  }
+
+  .wing-card-title { font-size: 16px; }
+  .wing-card-desc { font-size: 15px; }
+
+  /* ── MOBILE: CONNECT ── */
+  .connect-section {
+    padding: 60px 16px; /* top/bottom | sides on mobile */
+  }
+
+  .connect-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .connect-title { font-size: 28px; }
+
+  .map-box {
+    height: 240px;      /* ↑ = map taller on mobile */
+  }
+
+  /* ── MOBILE: GALLERY ── */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* ── MOBILE: PAGE SECTIONS ── */
+  .page-section {
+    padding: 90px 16px 60px; /* top | sides | bottom on mobile */
+  }
+
+  .page-title { font-size: 32px; }
+
+  /* ── MOBILE: ABOUT ── */
+  .about-block {
+    padding: 24px 18px; /* top/bottom | sides inside about block on mobile */
+  }
+
+  .about-block h3 { font-size: 16px; }
+  .about-block p { font-size: 14px; }
+
+  /* ── MOBILE: DOWNLOADS ── */
+  .dl-item { flex-direction: column; align-items: flex-start; gap: 12px; }
+
+  /* ── MOBILE: DIOCESES ── */
+  .dioceses-grid {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+    gap: 16px;
+  }
+
+  .diocese-heading { font-size: 14px; padding: 12px 16px; }
+  .diocese-body { padding: 14px 16px; }
+  .diocese-role { min-width: 90px; font-size: 10px; }
+  .diocese-name { font-size: 13px; }
+
+  /* ── MOBILE: FOOTER ── */
+  .footer {
+    padding: 20px 16px;
+    font-size: 13px;
+  }
 }
 
 
 /* ================================================================
-   RESPONSIVE — SMALL MOBILE (max 480px)
+   SMALL PHONE — 361px to 480px
 ================================================================ */
 
 @media (max-width: 480px) {
 
-  .hero-title { font-size: 26px; }
-  .leadership-title { font-size: 24px; }
-  .leadership-card { width: 95%; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  /* ── SMALL PHONE: GLOW ── */
+  body::before {
+    top: 6%;           /* ↑ = glow moves DOWN on small phones */
+    left: 50%;          /* Keep centered | ↑ = right | ↓ = left */
+    width: 300px;       /* ↑ = glow WIDER on small phones */
+    height: 300px;      /* ↑ = glow TALLER on small phones */
+    opacity: 0.7;       /* ↑ = brighter | ↓ = fainter on small phones */
+    filter: blur(35px); /* ↑ = softer glow on small phones */
+  }
+
+  /* ── SMALL PHONE: NAV ── */
+  .header {
+    padding: 7px 14px;  /* top/bottom | sides on small phones */
+  }
+
+  .navbar-logo {
+    transform: scale(1.2); /* ↑ = bigger logo on small phones */
+  }
+
+  /* ── SMALL PHONE: HERO ── */
+  .hero {
+    padding: 50px 14px 18px; /* top | sides | bottom on small phones */
+    min-height: 100svh;
+  }
+
+  .hero-logo {
+    height: 250px;      /* ↑ = hero logo taller on small phones */
+   
+  }
+
+  .hero-title {
+    font-size: 22px;    /* ↑ = title bigger on small phones */
+   
+  }
+
+  .hero-subtitle-small {
+    font-size: 15px;    /* ↑ = "Welcome To" bigger on small phones */
+    
+  }
+
+  .hero-content {
+    gap: 5px;           /* ↑ = more space between hero elements on small phones */
+  }
+
+  /* ── SMALL PHONE: INTRO ── */
+  .intro-img {
+    min-height: 220px;  /* ↑ = image taller on small phones */
+    max-height: 280px;
+    object-position: center 20px 25px; /* move photo focus on small phones */
+  }
+
+  .intro-card {
+    padding: 26px 16px; /* top/bottom | sides inside card on small phones */
+  }
+
+  .intro-card-title {
+    font-size: 20px;    /* ↑ = card heading bigger on small phones */
+  }
+
+  /* ── SMALL PHONE: LEADERSHIP ── */
+  .leadership-title {
+    font-size: 22px;    /* ↑ = gold title bigger on small phones */
+  }
+
+  .leadership-card {
+    width: 92%;         /* ↑ = cards wider on small phones */
+  }
+
+  /* ── SMALL PHONE: CARD PHOTO ── */
+  .card-image {
+    height: 190px;      /* ↑ = photos taller on small phones */
+    object-position: 50% 20%; /* move photo on small phones */
+  }
+
+  /* ── SMALL PHONE: WINGS ── */
+  .wing-card {
+    padding: 26px 18px; /* top/bottom | sides inside wing card on small phones */
+  }
+
+  .wing-card-title { font-size: 15px; }
+
+  /* ── SMALL PHONE: SECTION PADDING ── */
+  .wings-section, .connect-section {
+    padding: 44px 12px; /* top/bottom | sides on small phones */
+  }
+
+  .leadership-section { padding: 10px 12px 50px; }
+
+  .page-section {
+    padding: 86px 12px 44px; /* top | sides | bottom on small phones */
+  }
+
+  /* ── SMALL PHONE: GALLERY ── */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  /* ── SMALL PHONE: DIOCESES ── */
+  .dioceses-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .diocese-heading { font-size: 13px; padding: 11px 14px; }
+  .diocese-body { padding: 12px 14px; }
+  .diocese-role { min-width: 85px; }
+}
+
+
+/* ================================================================
+   TINY PHONE — up to 360px (includes 320px old phones)
+================================================================ */
+
+@media (max-width: 360px) {
+
+  /* ── TINY PHONE: GLOW ── */
+  body::before {
+    top: 8%;            /* ↑ = glow moves DOWN on tiny phones */
+    left: 50%;          /* Keep centered | ↑ = right | ↓ = left */
+    width: 220px;       /* ↑ = glow WIDER — keep below 320px to avoid side overflow */
+    height: 220px;      /* ↑ = glow TALLER on tiny phones */
+    opacity: 0.6;       /* ↑ = brighter | ↓ = fainter on tiny phones */
+    filter: blur(30px); /* ↑ = softer glow on tiny phones */
+  }
+
+  /* Prevents any element being wider than the screen on 320px */
+  * { max-width: 100%; }
+
+  /* ── TINY PHONE: NAV ── */
+  .header {
+    padding: 6px 10px;  /* Very tight — saves space on 320px screens */
+  }
+
+  .navbar-logo {
+    transform: scale(1.1); /* Smaller logo on tiny phones to fit nav */
+  }
+
+  .logo-line1, .logo-line2 {
+    font-size: 10px;    /* ↑ = name text bigger | ↓ = fits 320px without wrapping */
+  }
+
+  /* ── TINY PHONE: HERO ── */
+  .hero {
+    padding: 60px 10px 14px; /* top | sides | bottom on tiny phones */
+    min-height: 100svh;
+  }
+
+  .hero-logo {
+    height: 90px;       /* ↑ = hero logo taller | keep small so all fits on 320px */
+  }
+
+  .hero-title {
+    font-size: 18px;    /* ↑ = title bigger on tiny phones */
+  }
+
+  .hero-subtitle-small {
+    font-size: 14px;    /* ↑ = "Welcome To" bigger on tiny phones */
+  }
+
+  .hero-content {
+    gap: 4px;           /* Minimum spacing so all fits on 320px */
+  }
+
+  /* ── TINY PHONE: INTRO ── */
+  .intro-img {
+    min-height: 180px;  /* ↑ = image taller on tiny phones */
+    max-height: 240px;
+    object-position: center 30%; /* move photo focus on tiny phones */
+  }
+
+  .intro-card {
+    padding: 22px 12px; /* top/bottom | very tight sides on tiny phones */
+  }
+
+  .intro-card-title {
+    font-size: 18px;    /* ↑ = card heading bigger on tiny phones */
+  }
+
+  .intro-card-desc {
+    font-size: 13px;    /* ↑ = paragraph bigger on tiny phones */
+  }
+
+  /* ── TINY PHONE: LEADERSHIP ── */
+  .leadership-title {
+    font-size: 18px;    /* ↑ = gold title bigger on tiny phones */
+    margin: 28px 10px 22px;
+  }
+
+  .leadership-card {
+    width: 100%;        /* Full width on tiny phones */
+    max-width: 100%;
+    padding: 16px 14px; /* top/bottom | sides inside card on tiny phones */
+  }
+
+  /* ── TINY PHONE: CARD PHOTO ── */
+  .card-image {
+    height: 170px;      /* ↑ = photos taller on tiny phones */
+    object-position: 50% 20%; /* move photo on tiny phones */
+    /* X: 0%=left 50%=center 100%=right */
+    /* Y: 0%=top  50%=center 100%=bottom */
+  }
+
+  .leadership-section { padding: 10px 10px 44px; }
+
+  /* ── TINY PHONE: WINGS ── */
+  .wings-section {
+    padding: 40px 10px; /* top/bottom | sides on tiny phones */
+  }
+
+  .wings-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .wing-card {
+    padding: 22px 14px; /* top/bottom | sides inside wing card on tiny phones */
+  }
+
+  .wing-card-title { font-size: 14px; }
+  .wing-card-desc { font-size: 13px; }
+
+  /* ── TINY PHONE: CONNECT ── */
+  .connect-section {
+    padding: 40px 10px; /* top/bottom | sides on tiny phones */
+  }
+
+  .connect-inner { grid-template-columns: 1fr; gap: 20px; }
+
+  .map-box {
+    height: 200px;      /* ↑ = map taller on tiny phones */
+  }
+
+  /* ── TINY PHONE: PAGE SECTIONS ── */
+  .page-section {
+    padding: 80px 10px 40px; /* top | sides | bottom on tiny phones */
+  }
+
+  .about-block {
+    padding: 18px 12px; /* top/bottom | sides inside about block on tiny phones */
+  }
+
+  /* ── TINY PHONE: GALLERY ── */
+  .gallery-grid {
+    grid-template-columns: 1fr; /* 1 column on tiny phones */
+    gap: 10px;
+  }
+
+  /* ── TINY PHONE: DOWNLOADS ── */
+  .dl-item {
+    padding: 14px 12px; /* top/bottom | sides inside download row on tiny phones */
+  }
+
+  .dl-name { font-size: 13px; }
+
+  /* ── TINY PHONE: DIOCESES ── */
+  .dioceses-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .diocese-card { border-radius: 12px; }
+  .diocese-heading { font-size: 12px; padding: 10px 12px; }
+  .diocese-body { padding: 10px 12px; }
+  .diocese-role { min-width: 75px; font-size: 9px; }
+  .diocese-name { font-size: 12px; }
+  .diocese-row { gap: 8px; padding: 6px 0; }
+
+  /* ── TINY PHONE: FOOTER ── */
+  .footer {
+    font-size: 12px;
+    padding: 18px 10px;
+  }
 }
