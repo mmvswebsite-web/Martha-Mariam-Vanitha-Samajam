@@ -6,10 +6,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery — Martha Mariam Vanitha Samajam</title>
-  <link rel="shortcut icon" href="./IMAGES/favicon.png" type="image/png">
 
   <!-- Main site CSS — controls nav, footer, fonts, shared styles -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="responsive.css" />
 
   <!-- Poppins font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet" />
@@ -253,6 +253,7 @@
       max-height: 78vh;
       /* ↑ increase = photo takes more screen height */
       object-fit: contain;
+      image-orientation: from-image;
       border-radius: 12px;
       /* ↑ increase = photo corners more rounded */
       box-shadow: 0 0 60px rgba(0,0,0,0.7);
@@ -272,73 +273,7 @@
       padding: 0 20px;
     }
 
-    /* Left arrow button */
-    .lightbox-prev {
-      position: absolute;
-      left: 20px;
-      /* ↑ increase = arrow moves right */
-      top: 50%;
-      transform: translateY(-50%);
-      color: #ffffff;
-      font-size: 44px;
-      /* ↑ increase = arrow bigger */
-      cursor: pointer;
-      background: rgba(0,0,0,0.4);
-      border: none;
-      border-radius: 50%;
-      width: 54px;
-      /* ↑ increase = arrow button bigger */
-      height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, color 0.2s;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Right arrow button */
-    .lightbox-next {
-      position: absolute;
-      right: 20px;
-      /* ↑ increase = arrow moves left */
-      top: 50%;
-      transform: translateY(-50%);
-      color: #ffffff;
-      font-size: 44px;
-      cursor: pointer;
-      background: rgba(0,0,0,0.4);
-      border: none;
-      border-radius: 50%;
-      width: 54px;
-      height: 54px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, color 0.2s;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Arrow hover effect */
-    .lightbox-prev:hover,
-    .lightbox-next:hover {
-      background: rgba(230, 192, 104, 0.3);
-      color: #e6c068;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .album-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 768px) {
-      .album-grid { grid-template-columns: 1fr; }
-      .page-section { padding: 100px 20px 60px; }
-      .lightbox-img { max-width: 90vw; max-height: 70vh; }
-      .lightbox-prev { left: 8px; width: 40px; height: 40px; font-size: 28px; }
-      .lightbox-next { right: 8px; width: 40px; height: 40px; font-size: 28px; }
-    }
-
-       /* ── DOWNLOAD BUTTON ──
+    /* ── DOWNLOAD BUTTON ──
    Download button for lightbox photos */
 .lightbox-content {
   position: relative;
@@ -366,8 +301,6 @@
   background: #e6c068;
   transform: scale(1.05);
 }
-
-
 
     /* Left arrow button */
     .lightbox-prev {
@@ -455,9 +388,7 @@
         <li><a href="gallery.html" class="active">Gallery</a></li>
         <li><a href="events.html">Events</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="forms.html">Forms</a></li>
         <li><a href="index.html#organisations">Organisations</a></li>
-        <li><a href="dioceses.html" class="active">Dioceses</a></li>
         <li><a href="downloads.html">Downloads</a></li>
       </ul>
       <div class="menu-toggle" id="menuToggle">
@@ -476,8 +407,8 @@
       <li><a href="gallery.html">Gallery</a></li>
       <li><a href="events.html">Events</a></li>
       <li><a href="about.html">About</a></li>
-      <li><a href="forms.html">Forms</a></li>
       <li><a href="index.html#organisations">Organisations</a></li>
+      <li><a href="dioceses.html">Dioceses</a></li>
       <li><a href="downloads.html">Downloads</a></li>
     </ul>
   </div>
@@ -491,16 +422,16 @@
     <div class="album-grid">
 
       <div class="album-card" onclick="openAlbum('album1')">
-        <div class="album-cover"><img src= "GALLERY/471161774_122133546104504796_7832157253768851915_n.jpg"/></div>
+        <div class="album-cover"><img src="GAlLERY/471161774_122133546104504796_7832157253768851915_n.jpg" alt="Annual General Body Meeting 2024" /></div>
         <div class="album-info">
-          <p class="album-title">Anna Fellowship First Annual Conference</p>
-          <p class="album-desc">Central Office, Kanjikuzhy, Kottayam — April 2026</p>
-          <p class="album-count">6 Photos</p>
+          <p class="album-title">Annual General Body Meeting 2024</p>
+          <p class="album-desc">Central Office, Kanjikuzhy, Kottayam — January 2024</p>
+          <p class="album-count">12 Photos</p>
         </div>
       </div>
 
       <div class="album-card" onclick="openAlbum('album2')">
-        <div class="album-cover"><img src= "GALLERY/674186730_26659947263693454_4188468501166062684_n.jpg"/></div>
+        <div class="album-cover"><img src="GAlLERY/471161774_122133546104504796_7832157253768851915_n.jpg" alt="Women's Day Celebration 2024" /></div>
         <div class="album-info">
           <p class="album-title">Women's Day Celebration 2024</p>
           <p class="album-desc">All Diocese units across India — March 2024</p>
@@ -509,7 +440,7 @@
       </div>
 
       <div class="album-card" onclick="openAlbum('album3')">
-        <div class="album-cover"><img src= "GALLERY/471161774_122133546104504796_7832157253768851915_n.jpg" /></div>
+        <div class="album-cover">🤝</div>
         <div class="album-info">
           <p class="album-title">Snehasparsam Charity Distribution</p>
           <p class="album-desc">Beneficiaries across Kerala State — April 2024</p>
@@ -518,7 +449,7 @@
       </div>
 
       <div class="album-card" onclick="openAlbum('album4')">
-        <div class="album-cover"><img src= "GALLERY/471161774_122133546104504796_7832157253768851915_n.jpg"/></div>
+        <div class="album-cover">📖</div>
         <div class="album-info">
           <p class="album-title">Vanitha Deepthi Magazine Launch</p>
           <p class="album-desc">Headquarters, Kottayam — December 2024</p>
@@ -553,7 +484,7 @@
     <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
     <button class="lightbox-prev" onclick="changePhoto(-1)">&#8249;</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery Photo" />
-    <button class="lightbox-download" onclick="downloadPhoto()" title="Download photo"> Download</button>
+    <button class="dl-btn" onclick="downloadPhoto()" title="Download photo">📥 Download</button>
     <p class="lightbox-caption" id="lightboxCaption"></p>
     <button class="lightbox-next" onclick="changePhoto(1)">&#8250;</button>
   </div>
@@ -573,16 +504,15 @@
        Change caption to describe each photo */
     var albums = {
       album1: {
-        title: 'Anna Fellowship First Annual Conference',
+        title: 'Annual General Body Meeting 2024',
         photos: [
-          { src: 'GALLERY/674570827_26664715059883341_1475501629645415596_n.jpg', caption: 'Opening prayer at the General Body Meeting' },
-          { src: 'GALLERY/674674625_26664712276550286_366364124745019905_n.jpg', caption: 'Lighting Cermony' },
-          { src: 'GALLERY/674560934_26664681713220009_1972278917328813503_n.jpg', caption: 'Address by the Vice-President' },
-          { src: 'GALLERY/672681820_26664681579886689_838726602213668940_n.jpg', caption: 'Skit by Committee members during the session' },
-          { src: 'GALLERY/672687248_26659947650360082_9142503469500699771_n.jpg', caption: 'Prize distribution' },
-          { src: 'GALLERY/674186730_26659947263693454_4188468501166062684_n.jpg', caption: 'Group photo of all members' },
-          
-        ]
+          { src: 'GALLERY/471161774_122133546104504796_7832157253768851915_n.jpg', caption: 'Opening prayer at the General Body Meeting' },
+          { src: 'GALLERY/471057963_122133532706504796_3980953019483822326_n.jpg', caption: 'Address by the President' },
+          { src: 'GALLERY/470882834_122133545774504796_7820569292584286671_n.jpg', caption: 'Committee members during the session' },
+          { src: 'GALLERY/471161774_122133546104504796_7832157253768851915_n.jpg', caption: 'Resolution discussions' },
+          { src: 'GALLERY/471161774_122133546104504796_7832157253768851915_n.jpg', caption: 'Group photo of all members' },
+        
+        ] 
       },
       album2: {
         title: "Women's Day Celebration 2024",
@@ -668,6 +598,26 @@
     document.getElementById('lightbox').addEventListener('click', function(e) {
       if (e.target === this) closeLightbox();
     });
+
+    function downloadPhoto() {
+  var photo = currentPhotos[currentIndex];
+  
+  if (!photo) {
+    alert('No photo to download');
+    return;
+  }
+  
+  // Get the filename from the image path
+  var fileName = photo.src.split('/').pop() || 'photo.jpg';
+  
+  // Create a temporary link and trigger download
+  var link = document.createElement('a');
+  link.href = photo.src;
+  link.download = fileName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
   </script>
 
 </body>
