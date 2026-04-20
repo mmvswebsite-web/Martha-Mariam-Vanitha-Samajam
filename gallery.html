@@ -338,6 +338,101 @@
       .lightbox-next { right: 8px; width: 40px; height: 40px; font-size: 28px; }
     }
 
+       /* ── DOWNLOAD BUTTON ──
+   Download button for lightbox photos */
+.lightbox-content {
+  position: relative;
+  display: inline-block;
+}
+
+.lightbox-download {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(230, 192, 104, 0.9);
+  color: #000000;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10000;
+}
+
+.lightbox-download:hover {
+  background: #e6c068;
+  transform: scale(1.05);
+}
+
+    /* Left arrow button */
+    .lightbox-prev {
+      position: absolute;
+      left: 20px;
+      /* ↑ increase = arrow moves right */
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      font-size: 44px;
+      /* ↑ increase = arrow bigger */
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      /* ↑ increase = arrow button bigger */
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Right arrow button */
+    .lightbox-next {
+      position: absolute;
+      right: 20px;
+      /* ↑ increase = arrow moves left */
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ffffff;
+      font-size: 44px;
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, color 0.2s;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Arrow hover effect */
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(230, 192, 104, 0.3);
+      color: #e6c068;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .album-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .album-grid { grid-template-columns: 1fr; }
+      .page-section { padding: 100px 20px 60px; }
+      .lightbox-img { max-width: 90vw; max-height: 70vh; }
+      .lightbox-prev { left: 8px; width: 40px; height: 40px; font-size: 28px; }
+      .lightbox-next { right: 8px; width: 40px; height: 40px; font-size: 28px; }
+    }
+
   </style>
 </head>
 
@@ -456,6 +551,7 @@
     <button class="lightbox-close" onclick="closeLightbox()">&#x2715;</button>
     <button class="lightbox-prev" onclick="changePhoto(-1)">&#8249;</button>
     <img class="lightbox-img" id="lightboxImg" src="" alt="Gallery Photo" />
+    <button class="lightbox-download" onclick="downloadPhoto()" title="Download photo"> Download</button>
     <p class="lightbox-caption" id="lightboxCaption"></p>
     <button class="lightbox-next" onclick="changePhoto(1)">&#8250;</button>
   </div>
