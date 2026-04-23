@@ -1,0 +1,20 @@
+# robots.txt for Martha Mariam Vanitha Samajam
+# https://mmvswebsite-web.github.io/Martha-Mariam-Vanitha-Samajam/
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Allow Google specifically
+User-agent: Googlebot
+Allow: /
+
+# Allow Bing specifically
+User-agent: Bingbot
+Allow: /
+
+# Block access to unimportant folders (optional but good practice)
+Disallow: /.github/
+
+# Sitemap location - very important!
+Sitemap: https://mmvswebsite-web.github.io/Martha-Mariam-Vanitha-Samajam/sitemap.xml
