@@ -181,4 +181,18 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 100); /* 100ms delay so the page loads before scrolling */
   }
 
+    if (window.location.hash === '#leadership') {
+    setTimeout(function () {
+      var wings = document.getElementById('leadership');
+      if (wings) {
+        var navHeight = document.querySelector('.header') ?
+          document.querySelector('.header').offsetHeight : 0;
+        window.scrollTo({
+          top: wings.offsetTop - navHeight - 10,
+          behavior: 'smooth'
+        });
+      }
+    }, 100); /* 100ms delay so the page loads before scrolling */
+  }
+
 }); /* End of DOMContentLoaded */
